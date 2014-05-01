@@ -3,7 +3,7 @@
 angular.module('childCareAppApp')
   .factory('UserService', function (Azure) {
 
-      function signUpNewUser(data, success, error) {
+      function signUpUser(data, success, error) {
 
           Azure.signUpTable().insert(data).done(function (datax) {
 
@@ -21,11 +21,11 @@ angular.module('childCareAppApp')
       }
 
       function getAllUsers(success, error) {
-          Azure.signUpTable().read().done(function (newUsers) {
+          Azure.signUpTable().read().done(function (Users) {
 
               if (success) {
-                  //console.log(newUsers);
-                  success(newUsers);
+                  //console.log(Users);
+                  success(Users);
               }
 
           }, function (err) {
@@ -37,8 +37,30 @@ angular.module('childCareAppApp')
           })
       }
 
+
+      //function getAUser(success, error) {
+
+      //    Azure.signUpTable().
+
+      //}
+
+
+
+      //function deleteUser(user, success, error) {
+
+      //    Azure.signUpTable().read().done(function (users) {
+
+
+
+      //    }, function () {
+
+
+      //    });
+
+      //}
+
       return {
-          signUpNewUser: signUpNewUser,
+          signUpUser: signUpUser,
           getAllUsers: getAllUsers
       };
   });

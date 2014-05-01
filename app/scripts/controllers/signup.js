@@ -13,7 +13,7 @@ angular.module('childCareAppApp')
 
           //console.log("I'm inside the signUp function");
 
-          UserService.signUpNewUser($scope.user, function (data) {
+          UserService.signUpUser($scope.user, function (data) {
 
               //console.log(data);
 

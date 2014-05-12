@@ -10,22 +10,20 @@ angular.module('childCareAppApp')
               if (success) {
                   success(datax);
               }
-
           }, function (err) {
 
               if (error) {
                   error(err);
               }
           });
-
       }
 
       function getAllUsers(success, error) {
-          Azure.signUpTable().read().done(function (Users) {
+          Azure.signUpTable().read().done(function (users) {
 
               if (success) {
                   //console.log(Users);
-                  success(Users);
+                  success(users);
               }
 
           }, function (err) {
@@ -37,31 +35,56 @@ angular.module('childCareAppApp')
           })
       }
 
+      function getUserById(userId, success, error) {
+          Azure.signUpTable().where({ id: userId }).read().done(function (user) {
 
-      //function getAUser(success, error) {
+              if (success) {
+                  success(user[0]);
+                  console.log(user);
+              }
 
-      //    Azure.signUpTable().
+          }, function (errObj) {
+              error(errObj);
+          })
+      }
 
-      //}
+      function deleteUser(userId, success, error) {
 
+          Azure.signUpTable().del({ id: userId }).done(function (users) {
 
+              if (success) {
 
-      //function deleteUser(user, success, error) {
+                  success(users);
+                  console.log(users);
+              }
 
-      //    Azure.signUpTable().read().done(function (users) {
+          }, function (errorObject) {
 
+              if (error) {
+                  console.log(errorObject);
+              }
+          });
 
+      }
 
-      //    }, function () {
+      function updateUser(user, success, error) {
 
+          Azure.signUpTable().update(user).done(function (user) {
 
-      //    });
+              console.log(user);
 
-      //}
+          }, function (err) {
+
+              console.log(err);
+          })
+      }
 
       return {
           signUpUser: signUpUser,
-          getAllUsers: getAllUsers
+          getAllUsers: getAllUsers,
+          getUserById: getUserById,
+          deleteUser: deleteUser,
+          updateUser: updateUser
       };
   });
 

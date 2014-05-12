@@ -21,6 +21,10 @@ angular
         templateUrl: 'views/signedusers.html',
         controller: 'SignedusersCtrl'
       })
+      .when('/edit/:id', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

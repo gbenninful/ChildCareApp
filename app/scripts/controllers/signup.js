@@ -11,11 +11,7 @@ angular.module('childCareAppApp')
 
       $scope.signUp = function () {
 
-          //console.log("I'm inside the signUp function");
-
           UserService.signUpUser($scope.user, function (data) {
-
-              //console.log(data);
 
               Notifier.success("Your new user was signed up. This is Awesome");
 
